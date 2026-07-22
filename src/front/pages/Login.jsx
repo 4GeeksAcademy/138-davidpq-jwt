@@ -1,5 +1,5 @@
 // Import necessary hooks and components from react-router-dom and other libraries.
-import { useNavigate, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
+import { Link, useNavigate, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
 import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom hook for accessing the global state
 import { useState } from "react";
 import { loginService } from "../services/AuthServices";
@@ -24,7 +24,7 @@ export const Login = props => {
         }
 
         dispatch({ type: "login", payload: { token: data.token, user: data.user } });
-        navigate("/");
+        navigate("/demo");
     };
 
     return (
@@ -47,7 +47,7 @@ export const Login = props => {
                     <button type="submit" className="btn btn-primary w-100">Entrar</button>
 
                     <div className="text-center mt-3">
-                        <a href="#" className="text-decoration-none">Crear Cuenta</a>
+                        <Link to="/signup" className="text-decoration-none">Crear Cuenta</Link>
                     </div>
                 </form>
 

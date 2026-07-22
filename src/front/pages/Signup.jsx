@@ -22,7 +22,7 @@ export default function Signup() {
             return;
         }
         dispatch({ type: "login", payload: { token: data.token, user: data.user } });
-        navigate("/");
+        navigate("/demo");
     };
 
     return (
