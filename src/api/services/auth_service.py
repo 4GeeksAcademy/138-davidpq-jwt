@@ -1,6 +1,7 @@
 from flask import abort
 from api.models import db, User
 from api.services.user_service import UserService
+from flask_jwt_extended import create_access_token
 
 class Auth:
     @staticmethod
@@ -33,7 +34,11 @@ class Auth:
             db.session.rollback()
             abort(500, description="Error al crear usuario")
 
-        return new_user.serialize()
+        access_token = create_access_token(identity=str(new_user.id))
+        return {
+            "user": new_user.serialize(),
+            "token": access_token
+        }
 
 
     @staticmethod
